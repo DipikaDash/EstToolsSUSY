@@ -123,7 +123,9 @@ public:
       const auto & srCat = config.catMaps.at(cat_name);
 
       auto samp = config.samples.at("data-norm");
-      auto norm_sel = config.sel + " && " + crCat.cut + " && " + crCat.bin.var + ">" + toString(crCat.bin.plotbins.front());
+      // auto norm_sel = config.sel + " && " + crCat.cut + " && " + crCat.bin.var + ">" + toString(crCat.bin.plotbins.front());
+      auto norm_sel = config.sel + crCat.cut + " && " + crCat.bin.var + ">" + toString(crCat.bin.plotbins.front());
+
       auto norm_datayield = getYields(samp.tree, samp.wgtvar, norm_sel + samp.sel);
       Quantity norm_bkgtotal(0, 0);
       for (auto &s : norm_samples){
